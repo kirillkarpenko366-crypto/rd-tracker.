@@ -28,24 +28,24 @@ async function ensureSeed(){
   const q = query(collection(db,'rows'), where('proj','==','Манжерок'));
   const snap = await getDocs(q);
   if (snap.empty){
-    const titles = SEED_TITLES;
+    const seed = SEED_FROM_EXCEL;
     const doneIdx = SEED_DONE;
     const newIdx  = SEED_NEW;
     let i=0;
-    for (const t of titles){
-      const idx = i+1;
+    for (const s of seed){
+      const idx = Number(s['0']||i+1);
       await addDoc(collection(db,'rows'), {
         proj:'Манжерок',
         order:i,
         0:String(idx),
-        1:t,
-        2:'',
-        3:newIdx.includes(idx),
-        4: doneIdx.includes(idx) ? '✅ Готово' : '⏳ Не начато',
-        5:'',
-        6:'2025-10-24',
-        7:'',
-        8:''
+        1:s['1']||'',
+        2:s['2']||'',
+        3:s['3']===true,
+        4: s['4']||'⏳ Не начато',
+        5:s['5']||'',
+        6:(s['6']||'').slice(0,10),
+        7:s['7']||'',
+        8:s['8']||''
       });
       i++;
     }
@@ -87,12 +87,13 @@ function bindUI(){
     await addDoc(collection(window._db,'executors'), { proj: currentProject, name });
   });
   $('#btnAddRow').addEventListener('click', async ()=>{
-    const r = { id:String(Date.now()), proj: currentProject, order: rows.length, 0:String(rows.length+1), 1:'', 2:'', 3:false, 4:'⏳ Не начато', 5:'', 6:'', 7:'', 8:'' };
+    const r = { id:String(Date.now()), proj: currentProject, order: rows.length, 0:String(rows.length+1), 1:'', 2:s['2']||'', 3:false, 4:'⏳ Не начато', 5:s['5']||'', 6:'', 7:s['7']||'', 8:s['8']||'' };
     rows.push(r); await saveRow(rows.length-1, true); renderTable(); renderKPIs();
   });
   $('#btnSaveAll').addEventListener('click', saveAll);
   $('#btnExportCSV').addEventListener('click', exportCSV);
   $('#btnPrint').addEventListener('click', ()=>window.print());
+  $('#btnWide').addEventListener('click', ()=>{ document.body.classList.toggle('wide'); });
   $('#btnHistory').addEventListener('click', openHistory);
   $('#historyClose').addEventListener('click', ()=>$('#historyModal').classList.remove('open'));
   $('#filterStatus').addEventListener('change', renderTable);

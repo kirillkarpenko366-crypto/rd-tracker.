@@ -81,3 +81,8 @@ button.btn-light{background:#e9f5f1;color:#13463d}
 
 /* Status select chip spacing */
 .status-cell select{margin-left:6px}
+
+
+/* Wide mode toggle */
+body.wide table{min-width:1600px}
+.topbar .right .toggle{background:#0f3f36}

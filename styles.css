@@ -12,7 +12,7 @@ button{background:var(--brand);color:#fff;border:none;border-radius:10px;padding
 button.secondary{background:#23443b}
 button.ghost{background:transparent;border:1px solid #2b4b41;color:#e8fffa}
 button:active{transform:translateY(1px)}
-.container{padding:14px;display:grid;gap:14px;max-width:1600px;margin:0 auto}
+.container{padding:14px;display:grid;gap:14px;max-width:1800px;margin:0 auto}
 .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:0 1px 2px #0001}
 .kpi .title{font-size:12px;color:var(--muted)}
@@ -22,7 +22,7 @@ progress{width:100%;height:14px}
 .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#333;font-size:12px}
 .table-wrap{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:auto;max-height:72vh}
-table{min-width:1700px;width:100%;border-collapse:separate;border-spacing:0}
+table{min-width:1200px;width:100%;border-collapse:separate;border-spacing:0}
 thead th{position:sticky;top:0;background:#f7fbfa;border-bottom:1px solid var(--line);padding:10px;font-size:13px;text-align:left}
 tbody td{border-bottom:1px solid #eef2f0;padding:6px;font-size:15px;vertical-align:top}
 tbody tr:hover{background:#f8fffc}
@@ -44,3 +44,40 @@ textarea{resize:vertical}
 @media (max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.brand{font-size:15px}.container{padding:10px}.topbar{gap:8px}}
 
 .logo{height:28px; display:block; margin:0 auto; filter: drop-shadow(0 1px 0 rgba(0,0,0,.15));}
+
+
+/* brighter row status */
+tr[data-status="✅ Готово"]{ background:#d6f8e6 !important; }
+tr[data-status="⚙️ В работе"]{ background:#fff0c7 !important; }
+tr[data-status="⏳ Не начато"]{ background:#eef4f2 !important; }
+
+/* add a colored chip before select value */
+.status-cell{ position:relative }
+.status-chip{ width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle }
+.status-done{ background:#11b66f }
+.status-work{ background:#ffb020 }
+.status-todo{ background:#8fa59c }
+
+/* wrap long text instead of forcing horizontal scroll */
+td input[type="text"]{white-space:normal}
+td textarea{white-space:pre-wrap}
+
+
+/* Full-width layout */
+.container{max-width:100%; width:100%; padding:16px}
+.table-wrap{max-height:calc(100vh - 260px)}
+table{width:100%; min-width:1100px}
+
+/* Bigger SPECTRUM logo */
+.logo{height:40px}
+
+/* Bright buttons */
+button.secondary{background:#2c6e63}
+button.ghost{background:#ffffff22;border:2px solid #eaf7f3;color:#ffffff}
+button.btn-danger{background:#e03131;color:#fff;border:none}
+button.btn-danger:hover{filter:brightness(0.95)}
+button.btn-primary{background:#1f7a67;color:#fff}
+button.btn-light{background:#e9f5f1;color:#13463d}
+
+/* Status select chip spacing */
+.status-cell select{margin-left:6px}

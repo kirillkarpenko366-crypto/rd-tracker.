@@ -182,12 +182,16 @@ function renderTable(){
     i3.addEventListener('change', async e => { rows[idx][3]=e.target.checked; await saveRow(idx,false,'Новый лист'); renderKPIs(); });
     td3.appendChild(i3); tr.appendChild(td3);
 
-    const td4 = document.createElement('td');
+    const td4 = document.createElement('td'); td4.className='status-cell';
     const s4 = document.createElement('select');
     ['⏳ Не начато','⚙️ В работе','✅ Готово'].forEach(s=>{ const o=document.createElement('option'); o.textContent=s; s4.appendChild(o); });
     s4.value = r[4] || '⏳ Не начато';
     s4.addEventListener('change', async e => { rows[idx][4]=e.target.value; await saveRow(idx,false,'Статус'); renderKPIs(); applyDeadlineHighlight(td6, rows[idx][4]); });
-    td4.appendChild(s4); tr.appendChild(td4);
+    const chip = document.createElement('span'); chip.className='status-chip';
+function paintChip(val){ chip.className='status-chip ' + (val==='✅ Готово'?'status-done':val==='⚙️ В работе'?'status-work':'status-todo'); tr.dataset.status = val; }
+paintChip(s4.value);
+s4.addEventListener('change', ()=>{paintChip(s4.value); tr.dataset.status=s4.value;});
+td4.appendChild(chip); td4.appendChild(s4); tr.appendChild(td4);
 
     const td5 = document.createElement('td');
     const s5 = document.createElement('select'); const emptyOpt = document.createElement('option'); emptyOpt.textContent=''; s5.appendChild(emptyOpt);
@@ -213,7 +217,7 @@ function renderTable(){
 
     const td9 = document.createElement('td');
     const a9 = document.createElement('a'); a9.textContent='Открыть'; a9.className='badge';
-    const delBtn = document.createElement('button'); delBtn.textContent='Удалить'; delBtn.className='ghost'; delBtn.style.marginLeft='8px';
+    const delBtn = document.createElement('button'); delBtn.textContent='Удалить'; delBtn.className='btn-danger'; delBtn.style.marginLeft='8px';
     delBtn.addEventListener('click', ()=>deleteRow(r.id));
     function renderOpen(){
       const link = rows[idx][8];
@@ -229,7 +233,7 @@ function renderTable(){
     else tr.classList.add('status-todo');
     applyDeadlineHighlight(td6, s4.value);
 
-    tbody.appendChild(tr);
+    tr.dataset.status = s4.value; tbody.appendChild(tr);
   });
 }
 

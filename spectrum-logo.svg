@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220">
+  <defs>
+    <style>
+      .g{fill:#EAF7F3; font-family: 'Inter', Arial, sans-serif;}
+      .bold{font-weight:800}
+      .thin{font-weight:600}
+    </style>
+  </defs>
+  <text x="0" y="135" class="g bold" font-size="130">СПЕКТРУМ</text>
+  <text x="0" y="190" class="g thin" font-size="48">ИНЖИНИРИНГ | ПРОЕКТИРОВАНИЕ | СТРОИТЕЛЬСТВО</text>
+</svg>

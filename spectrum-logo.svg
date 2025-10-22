@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220">
+  <defs>
+    <style>
+      .g{fill:#225545; font-family: 'Inter', Arial, sans-serif;}
+      .bold{font-weight:800}
+      .thin{font-weight:600}
+    </style>
+  </defs>
+  <!-- stylized fan mark -->
+  <g fill="none" stroke="#225545" stroke-width="10">
+    <path d="M70,160 L70,80 L160,160 Z"/>
+    <path d="M110,160 L110,60 L220,160 Z"/>
+    <path d="M150,160 L150,40 L280,160 Z"/>
+  </g>
+  <!-- wordmark -->
+  <text x="320" y="135" class="g bold" font-size="130">СПЕКТРУМ</text>
+  <text x="320" y="190" class="g thin" font-size="48">ИНЖИНИРИНГ | ПРОЕКТИРОВАНИЕ | СТРОИТЕЛЬСТВО</text>
+</svg>
